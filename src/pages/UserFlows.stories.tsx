@@ -147,10 +147,3 @@ export const ToSuccessPage = {
     })
   },
 } satisfies Story
-
-export const DemoMode: Story = {
-  ...ToSuccessPage,
-  args: {
-    demoMode: true,
-  },
-}

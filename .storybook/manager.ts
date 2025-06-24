@@ -1,6 +1,5 @@
 import { addons } from 'storybook/manager-api'
 import { create } from 'storybook/theming/create'
-import chromaticLogo from '../src/assets/images/logo-chromatic.svg'
 
 const theme = create({
   base: 'light',
@@ -33,11 +32,6 @@ const theme = create({
   inputBorder: 'rgba(0,0,0,.3)',
   inputTextColor: '#333333',
   inputBorderRadius: 4,
-
-  // Brand assets
-  brandTitle: 'Chromatic Demo',
-  brandUrl: 'https://github.com/chromaui-demo/mealdrop-demo',
-  brandImage: chromaticLogo,
 })
 
 addons.setConfig({

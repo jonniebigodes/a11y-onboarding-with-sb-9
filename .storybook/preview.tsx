@@ -8,7 +8,6 @@ import { globalDecorators } from './decorators'
 import { viewports as breakpoints } from '../src/styles/breakpoints'
 import { DocsContainer, DocsContainerProps } from '@storybook/addon-docs/blocks'
 import { lightTheme } from '../src/styles/theme'
-import { demoModeLoader } from './interaction'
 
 // Create custom viewports using widths defined in design tokens
 // eslint-disable-next-line unicorn/no-array-reduce
@@ -70,7 +69,7 @@ const preview: Preview = {
     },
   },
   decorators: globalDecorators,
-  loaders: [mswLoader, demoModeLoader],
+  loaders: [mswLoader],
 }
 
 declare module 'storybook/internal/csf' {
