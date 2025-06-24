@@ -28,7 +28,14 @@ type IconButtonProps = {
 
 export const IconButton = ({ small = false, name, ...props }: IconButtonProps) => {
   return (
-    <StyledButton type="button" $small={small} {...props}>
+    <StyledButton
+      type="button"
+      $small={small}
+      /* Accessibility violation #9: Missing aria-label for icon button */
+      {...props}
+      role="directory"
+      aria-hidden="true"
+    >
       <Icon name={name} size={small ? 15 : 24} color="#202020" />
     </StyledButton>
   )

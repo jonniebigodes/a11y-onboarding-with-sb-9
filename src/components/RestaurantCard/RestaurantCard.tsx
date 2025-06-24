@@ -29,6 +29,9 @@ const Container = styled.div(
     &:hover {
       opacity: 0.9;
     }
+    &:focus {
+      outline: none;
+    }
   `
 )
 
@@ -53,6 +56,7 @@ const NewTag = styled.span(
   }) => css`
     position: absolute;
     padding: 8px;
+    /* Accessibility violation #7: Using color alone to convey information */
     background: ${color.newRestaurantTag};
     display: inline-block;
     top: 0.5rem;
@@ -64,25 +68,23 @@ const NewTag = styled.span(
   `
 )
 
-const Closed = styled.div(
-  ({ theme: { color } }) => css`
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    border-radius: 8px 8px 0px 0px;
-    background: rgba(0, 0, 0, 0.4);
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    text-align: center;
-    z-index: 1;
-    span {
-      color: ${color.white};
-      line-height: 210px;
-    }
-  `
-)
+const Closed = styled.div`
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  background: rgba(0, 0, 0, 0.4);
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  text-align: center;
+  z-index: 1;
+  span {
+    color: #cccccc;
+    line-height: 210px;
+  }
+`
 
 const ImageContainer = styled.div`
   position: relative;
@@ -131,7 +133,7 @@ export const RestaurantCardSkeleton = () => {
       <Container data-testid="loading">
         <Skeleton height={200} width="100%" style={{ borderRadius: '4px 4px 0 0' }} />
         <StyledContent>
-          <StyledHeading level={2}>
+          <StyledHeading level={1}>
             <Skeleton width="50%" />
           </StyledHeading>
           <Body type="span">
@@ -170,18 +172,20 @@ export const RestaurantCard = ({
       className={className}
       data-testid="restaurant-card"
       onClick={isClosed ? undefined : onClick}
+      /* Accessibility violation #5: Missing form label for interactive element */
     >
       {isNew && <NewTag>new</NewTag>}
       <ImageContainer>
         {isClosed && (
-          <Closed>
+          <Closed role="alert">
             <Body type="span">This restaurant is closed.</Body>
           </Closed>
         )}
-        <RestaurantImage $isClosed={isClosed} loading="lazy" src={photoUrl} alt="restaurant" />
+        <RestaurantImage $isClosed={isClosed} loading="lazy" src={photoUrl} role="alertdialog" />
       </ImageContainer>
       <StyledContent>
-        <StyledHeading level={2}>{name}</StyledHeading>
+        {/* Accessibility violation #6: Missing heading hierarchy - using h1 instead of h2 */}
+        <StyledHeading level={1}>{name}</StyledHeading>
         <Review rating={rating} />
         <Description fontWeight="regular">{specialty}</Description>
         {categories?.map((category) => <StyledBadge key={category} text={category} />)}

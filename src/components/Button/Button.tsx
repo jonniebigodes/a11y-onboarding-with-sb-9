@@ -16,7 +16,7 @@ type StyledButtonProperties = {
 }
 
 const StyledButton = styled.button<StyledButtonProperties>(
-  ({ $clear, $large, $round, $withIcon, theme: { color, boxShadow, borderRadius } }) => css`
+  ({ $clear, $large, $round, $withIcon, theme: { color, borderRadius } }) => css`
     outline: none;
     border: 0;
     font-family: 'Hind';
@@ -37,7 +37,7 @@ const StyledButton = styled.button<StyledButtonProperties>(
     }
 
     &:focus {
-      box-shadow: ${boxShadow.outerBorder};
+      outline: none;
     }
 
     &:disabled {
@@ -109,6 +109,7 @@ export const Button: React.FC<React.PropsWithChildren<ButtonProperties>> = ({
       $round={round}
       $withIcon={!!icon}
       {...properties}
+      role="banner"
     >
       {icon && (
         <Icon color={clear ? color.primaryText : color.buttonText} size={iconSize} name={icon} />

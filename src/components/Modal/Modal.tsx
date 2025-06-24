@@ -40,7 +40,6 @@ export const Modal: React.FC<React.PropsWithChildren<ModalProps>> = ({
               clear
               round
               icon="cross"
-              aria-label="close modal"
               iconSize={16}
             />
           </TopBar>

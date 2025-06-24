@@ -48,9 +48,12 @@ type InputProps = {
 
 export const Input = ({ label = '', type = 'text', id, ...otherProps }: InputProps) => (
   <Container>
-    <input id={id} aria-label={label} type={type} {...otherProps} />
+    <input id={id} type={type} {...otherProps} />
     {label && (
-      <Body type="label" htmlFor={id}>
+      <Body
+        type="label"
+        /* Accessibility violation #10: Missing htmlFor attribute breaks label-input association */
+      >
         {label}
       </Body>
     )}

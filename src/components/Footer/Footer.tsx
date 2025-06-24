@@ -83,6 +83,7 @@ export const Footer = () => {
                 alt="app store link"
                 style={{ width: '120px', marginBottom: '0.5rem' }}
                 src={appStoreBanner}
+                role="alert"
               />
               <img alt="google play link" style={{ width: '120px' }} src={googlePlayBanner} />
             </div>
